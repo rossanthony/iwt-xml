@@ -79,7 +79,7 @@ function processXsl()
           if(Math.floor(num_sets) == num_sets && num_sets > 0 && num_sets < 6)
           {
             var operator = getOperator($('#filterForm select[name="sets_comparison"]').val());
-            $(modifiedXsl).find('#set_count').each(function(){
+            $(modifiedXsl).find('[test="count(set)>0"]').each(function(){
                $(this).attr('test', "count(set)" + operator + num_sets);
             });
           }
@@ -105,7 +105,7 @@ function processXsl()
           if(Math.floor(round) == round && round > 0 && round < 8)
           {
             var operator = getOperator($('#filterForm select[name="round_comparison"]').val());
-            $(modifiedXsl).find('#round').each(function(){
+            $(modifiedXsl).find('[test="round>0"]').each(function(){
                $(this).attr('test', "round" + operator + round);
             });
           }

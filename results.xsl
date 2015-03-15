@@ -5,13 +5,13 @@
         <xsl:for-each select="match">
           <xsl:sort select="round" order="ascending"/>
 
-          <xsl:if id="round" test="round > 0">
+          <xsl:if test="round>0">
 
             <tbody>
             
             <xsl:for-each select="player">
               
-              <xsl:if id="set_count" test="count(set) > 0">
+              <xsl:if test="count(set)>0">
 
               <xsl:variable name="vOutcome">
                 <xsl:choose>
