@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Wimbledon 2013 results</title>
     <link rel="stylesheet" href="thirdparty/css/bootstrap.min.css">
-    <link rel="stylesheet" href="thirdparty/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles.css">
   </head>
 
@@ -21,7 +20,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
           <h2>Filters</h2>
 
           <form id="filterForm" role="search">
@@ -74,21 +73,28 @@
             
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
+        </div>
+
+        <div class="col-md-1">
 
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-5">
           <h2>Results</h2>
           <table id="results">
             <thead>
               <tr>
-               <th>Round</th>
-               <th>Player</th>
-               <th>Set 1</th>
-               <th>Set 2</th>
-               <th>Set 3</th>
-               <th>Set 4</th>
-               <th>Set 5</th>
+               <th colspan="2"></th>
+               <th colspan="5" class="set">Set</th>
+              </tr>
+              <tr>
+               <th>Rnd</th>
+               <th class="player">Player</th>
+               <th>1</th>
+               <th>2</th>
+               <th>3</th>
+               <th>4</th>
+               <th>5</th>
               </tr>
             </thead>
             
@@ -97,8 +103,12 @@
       </div>
 
       <div class="row">
-        <div id="debug" class="col-md-12">
-
+        <div id="declaration" class="col-md-12">
+            <h3>Declaration</h3>
+            <p><strong>I (Ross Anthony) confirm that this coursework submission is entirely my own work, except for the following:</strong></p>
+            <ol>
+              <li>Everything inside the subfolder of /thirdparty/ is not my work - this folder contains external dependencies such as the XML files, jQuery and Bootstrap.</li>
+            </ol>
         </div>
       </div>
 
@@ -112,6 +122,6 @@
     <!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
     <script src="thirdparty/js/jquery.min.js"></script>
     <script src="thirdparty/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
   </body>
 </html>

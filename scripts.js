@@ -1,8 +1,8 @@
 
 /**
- *
+ * Define globals required for initialisation on doc ready
  */
-var resultsXmlMens, resultsXmlWomens, resultsXsl;
+var resultsXmlMens, resultsXmlWomens, resultsXsl, filesLoaded = 0;
 
 /**
  * Abstract function to return the operator, only returns valid operators and prevents injection of invalid operators into the xsl
@@ -167,6 +167,15 @@ function processXsl()
   }
 }
 
+function init()
+{
+  // increment filesLoaded counter
+  filesLoaded++;
+  if(filesLoaded===3){
+    // wait until all 3 required files have loaded then initialise by auto submitting the form to run a default search
+    $('#filterForm').submit();
+  }
+}
 
 $(document).ready(function(){ 
 
@@ -185,27 +194,27 @@ $(document).ready(function(){
      */
     $.ajax({
         type: "GET",
-        url: "wimbledon-men-2013.xml",
+        url: "thirdparty/xml/wimbledon-men-2013.xml",
         dataType: "xml",
         success: function(data) {
-          // console.log(data);
           resultsXmlMens = data;
+          init();
         },
         error: function(data) {
-          alert('Could not load the xml file!');
+          alert('Could not load xml file!');
         }
     });
 
     $.ajax({
         type: "GET",
-        url: "wimbledon-women-2013.xml",
+        url: "thirdparty/xml/wimbledon-women-2013.xml",
         dataType: "xml",
         success: function(data) {
-          // console.log(data);
           resultsXmlWomens = data;
+          init();
         },
         error: function(data) {
-          alert('Could not load the xml file!');
+          alert('Could not load xml file!');
         }
     });
 
@@ -214,11 +223,11 @@ $(document).ready(function(){
         url: "results.xsl",
         dataType: "html",
         success: function(data) {
-          //console.log(data);
           resultsXsl = data;
+          init();
         },
         error: function(data) {
-          alert('Could not load the xml file!');
+          alert('Could not load xsl file!');
         }
     });
 });

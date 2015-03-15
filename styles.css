@@ -1,15 +1,26 @@
+/**
+ * Custom styles 
+ *
+ * author: Ross Anthony
+ */
+
 body {
 	padding-top: 50px;
 }
 
 table {
+	width: 100%;
 	border-collapse: collapse;
 	border: 1px solid #dbdbdb;
 }
 table thead th {
 	background-color: #101010;
+	border: 1px solid #dbdbdb;
 	color: white;
 	padding: 8px;
+}
+table thead th.set {
+	text-align: center;
 }
 table tbody:not(.no-results) {
 	border-bottom: 10px solid #dbdbdb;
@@ -34,4 +45,29 @@ table tbody tr.won td {
 .no-results {
 	color: red;
 	font-weight: bold;
+}
+
+@media only screen  and (min-width : 500px) {
+	.player {
+		min-width: 250px;
+	}
+}
+@media only screen  and (max-width : 480px) {
+	table {
+
+	}
+}
+
+
+/**
+ * The following tweaks are curtesy of CSS-tricks (https://css-tricks.com/snippets/css/style-placeholder-text/)
+ */
+.form-control::-webkit-input-placeholder { color: #9c9c9c; }
+.form-control:-moz-placeholder { color: #9c9c9c; }
+.form-control::-moz-placeholder { color: #9c9c9c; }
+.form-control:-ms-input-placeholder { color: #9c9c9c; }
+
+[placeholder]:focus::-webkit-input-placeholder {
+  transition: opacity 0.25s 0.25s ease; 
+  opacity: 0;
 }
