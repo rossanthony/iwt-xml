@@ -11,7 +11,7 @@ table thead th {
 	color: white;
 	padding: 8px;
 }
-table tbody {
+table tbody:not(.no-results) {
 	border-bottom: 10px solid #dbdbdb;
 }
 table tbody td {
@@ -29,4 +29,9 @@ table tbody tr.won td {
 
 #filterForm .col-md-8 {
 	padding-right: 10px;
+}
+
+.no-results {
+	color: red;
+	font-weight: bold;
 }

@@ -4,9 +4,15 @@
   
         <xsl:for-each select="match">
           <xsl:sort select="round" order="ascending"/>
-          <tbody>
+
+          <xsl:if id="round" test="round > 0">
+
+            <tbody>
+            
             <xsl:for-each select="player">
               
+              <xsl:if id="set_count" test="count(set) > 0">
+
               <xsl:variable name="vOutcome">
                 <xsl:choose>
                   <xsl:when test="outcome='won'">
@@ -35,11 +41,10 @@
                 </xsl:for-each>
               </tr>
                 
-              
+              </xsl:if>
             </xsl:for-each>  
-          </tbody>   
+            </tbody>  
+          </xsl:if> 
         </xsl:for-each>  
-  
-    
 </xsl:template>
 </xsl:stylesheet>
