@@ -30,6 +30,9 @@ function processXsl()
 {
   if(document.implementation.createDocument) 
   {
+    // Fade out the table, so the user knows their query request is being processed
+    $('#results').fadeOut('slow', function(){ 
+
       // Part 2(a) switch the xml data set depending on the users choice
       switch($('#filterForm select[name="result_set"]').val())
       {
@@ -43,11 +46,11 @@ function processXsl()
       }
       
       // Setup a new Dom parser instance and create a copy of the results xsl with which we can run modification on
+      // the global resultsXsl variable should be left intact as this will be require for subsequent searches
       var parser = new DOMParser();
       modifiedXsl = parser.parseFromString(resultsXsl, "text/xml");
       
       // Now lets modify the Xsl according to the users choice of filters
-      
       // Part 2(b) filter by name of player, either using contains or equals
       var search_name = $('#filterForm input[name="search_name"]').val();
       if(search_name !== '')
@@ -73,7 +76,6 @@ function processXsl()
       if(num_sets!=='')
       {
         num_sets = parseInt(num_sets);
-
         if($.isNumeric(num_sets))
         {
           if(Math.floor(num_sets) == num_sets && num_sets > 0 && num_sets < 6)
@@ -82,14 +84,10 @@ function processXsl()
             $(modifiedXsl).find('[test="count(set)>0"]').each(function(){
                $(this).attr('test', "count(set)" + operator + num_sets);
             });
-          }
-          else
-          {
+          }else{
             alert('Error: Number of sets must be a number between 1 and 5');   
           }
-        }
-        else
-        {
+        }else{
           alert('Error: Number of sets must be a numeric value');
         }
       }
@@ -99,7 +97,6 @@ function processXsl()
       if(round!=='')
       {
         round = parseInt(round);
-
         if($.isNumeric(round))
         {
           if(Math.floor(round) == round && round > 0 && round < 8)
@@ -108,14 +105,10 @@ function processXsl()
             $(modifiedXsl).find('[test="round>0"]').each(function(){
                $(this).attr('test', "round" + operator + round);
             });
-          }
-          else
-          {
+          }else{
             alert('Error: Round must be a number between 1 and 7');   
           }
-        }
-        else
-        {
+        }else{
           alert('Error: Round must be a numeric value');
         }
       }
@@ -128,8 +121,6 @@ function processXsl()
         });
       }
 
-      //console.log(modifiedXsl);
-
       // Setup the Xslt processor and import the dynamically modified version of the stylesheet
       var xslProc = new XSLTProcessor();
       xslProc.importStylesheet(modifiedXsl);
@@ -138,32 +129,36 @@ function processXsl()
       var tmpDoc = document.implementation.createDocument("", "test", null);
       var filteredResults = xslProc.transformToFragment(xmlData, tmpDoc);
       
-      //console.log(filteredResults);
-
       // Clear out the old results from the last search
       $('#results tbody').remove();
 
-      
       var result_count = 0;
 
-      if(filteredResults !== null)
-      {
+      if(filteredResults !== null){
+        // Create a tmp div element and append the dom fragment containing the filtered results
         var tmpDiv = document.createElement("div");
         tmpDiv.appendChild(filteredResults);
 
+        // Loop through the results and append to the results table, also increment the match results counter
         $(tmpDiv.innerHTML).each(function(){
-            //console.log(this);
-            if( $.trim($( this ).text()) !== '')
-            {
+            if( $.trim($( this ).text()) !== ''){
               result_count++;
               $('#results').append(this);
             }
         });
       }
 
+      // Add a message to the table if no results are found
       if(result_count === 0){
         $('#results thead').after('<tbody class="no-results"><tr><td colspan="7">No results found, please try adjusting the filters.</td></tr></tbody>');
       }
+      $('#matchCount span').html(result_count);
+      $('#results').fadeIn('slow');
+    });      
+  }
+  else
+  {
+    alert('Error: this app has been developed to run in the latest versions of Chrome or Firefox only.');
   }
 }
 

@@ -12,6 +12,7 @@ table {
 	width: 100%;
 	border-collapse: collapse;
 	border: 1px solid #dbdbdb;
+	display: none;
 }
 table thead th {
 	background-color: #101010;
@@ -42,6 +43,10 @@ table tbody tr.won td {
 	padding-right: 10px;
 }
 
+#matchCount span {
+	color: #9c9c9c;
+}
+
 .no-results {
 	color: red;
 	font-weight: bold;
@@ -52,12 +57,6 @@ table tbody tr.won td {
 		min-width: 250px;
 	}
 }
-@media only screen  and (max-width : 480px) {
-	table {
-
-	}
-}
-
 
 /**
  * The following tweaks are curtesy of CSS-tricks (https://css-tricks.com/snippets/css/style-placeholder-text/)
