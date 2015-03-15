@@ -1,12 +1,22 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 <xsl:template match="tournament">
-    <table>
+    
   
         <xsl:for-each select="match">
-          <xsl:sort select="round" order="ascending" />
+          <xsl:sort select="round" order="ascending"/>
           <tbody>
             <xsl:for-each select="player">
-              <tr>
+              
+              <xsl:variable name="vOutcome">
+                <xsl:choose>
+                  <xsl:when test="outcome='won'">
+                   <xsl:text>won</xsl:text>
+                  </xsl:when>
+                  <xsl:otherwise>lost</xsl:otherwise>
+                </xsl:choose>
+              </xsl:variable>
+                
+              <tr class="{$vOutcome}">
                 <td><xsl:value-of select="../round"/></td>
                 <td><xsl:value-of select="name"/></td>
                 <xsl:for-each select="set">
@@ -24,10 +34,12 @@
                   </xsl:choose>
                 </xsl:for-each>
               </tr>
+                
+              
             </xsl:for-each>  
-          <tbody>   
+          </tbody>   
         </xsl:for-each>  
   
-    </table>
+    
 </xsl:template>
 </xsl:stylesheet>

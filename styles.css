@@ -4,14 +4,29 @@ body {
 
 table {
 	border-collapse: collapse;
-	border: 1px solid #101010;
+	border: 1px solid #dbdbdb;
 }
 table thead th {
 	background-color: #101010;
 	color: white;
 	padding: 8px;
 }
+table tbody {
+	border-bottom: 10px solid #dbdbdb;
+}
 table tbody td {
 	padding: 8px;
-	border: 1px solid #101010;
+	border: 1px solid #dbdbdb;
+}
+
+table tbody tr.won td {
+	font-weight: bold;
+}
+
+.form-group {
+	padding: 0;
+}
+
+#filterForm .col-md-8 {
+	padding-right: 10px;
 }
