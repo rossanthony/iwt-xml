@@ -24,6 +24,9 @@
           <h2>Filters</h2>
 
           <form id="filterForm" role="search">
+            <div>
+              <label for="result_set">1. Select data set</label>
+            </div>
             <div class="form-group">
               <select name="result_set" class="form-control">
                 <option value="mens">Mens</option>
@@ -31,8 +34,11 @@
               </select>
             </div>
 
+            <div>
+              <label for="result_set">2. Player name</label>
+            </div>
             <div class="form-group col-md-8">
-              <input name="search_name" type="text" class="form-control" placeholder="Player name">
+              <input name="search_name" type="text" class="form-control">
             </div>
             <div class="form-group col-md-4">
               <select name="search_name_comparison" class="form-control">
@@ -41,8 +47,12 @@
               </select>
             </div>
 
+            
+            <div>
+              <label for="num_sets">3. Number of sets</label>
+            </div>
             <div class="form-group col-md-8">
-              <input name="num_sets" type="number" class="form-control" placeholder="Number of sets">
+              <input name="num_sets" type="number" class="form-control">
             </div>
             <div class="form-group col-md-4">
               <select name="sets_comparison" class="form-control right-only-radius">
@@ -52,8 +62,11 @@
               </select>
             </div>
 
+            <div>
+              <label for="num_sets">4. Round</label>
+            </div>
             <div class="form-group col-md-8">
-              <input name="round" type="number" class="form-control" placeholder="Round">
+              <input name="round" type="number" class="form-control">
             </div>
             <div class="form-group col-md-4">
               <select name="round_comparison" class="form-control right-only-radius">
@@ -63,8 +76,10 @@
               </select>
             </div>
 
+            <div>
+              <label for="num_sets">5. Sort order</label>
+            </div>
             <div class="form-group">
-              <label for="inputPassword">Sort by round:</label>
               <select name="sort" class="form-control">
                 <option value="asc">Ascending</option>
                 <option value="desc">Descending</option>
