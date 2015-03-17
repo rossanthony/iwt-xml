@@ -20,14 +20,15 @@
             <xsl:for-each select="set">
               <td><xsl:value-of select="self::node()"/></td>
               <xsl:choose>
+                <!-- Fill in any required blank table cells (if the num of sets is less that 5) -->
                  <xsl:when test="(position()=last()) and (position() = 2)">
-                   <td></td><td></td><td></td>
+                   <td colspan="3" class="empty-set"></td>
                  </xsl:when>
                  <xsl:when test="(position()=last()) and (position() = 3)">
-                   <td></td><td></td>
+                   <td colspan="2" class="empty-set"></td>
                  </xsl:when>
                  <xsl:when test="(position()=last()) and (position() = 4)">
-                   <td></td>
+                   <td class="empty-set"></td>
                  </xsl:when>
               </xsl:choose>
             </xsl:for-each>
